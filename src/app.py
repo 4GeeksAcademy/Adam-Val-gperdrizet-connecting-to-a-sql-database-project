@@ -23,19 +23,19 @@ def create_table(table_name: str, query: str) -> None:
         print(f'Tabel {table_name} exists')
 
 tables={
-'publishers': """CREATE TABLE publishers(
+'publishers': """CREATE TABLE IF NOT EXISTS publishers(
     publisher_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     PRIMARY KEY(publisher_id)
 );""",
-'authors': """CREATE TABLE authors(
+'authors': """CREATE TABLE IF NOT EXISTS authors(
     author_id INT NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     middle_name VARCHAR(50) NULL,
     last_name VARCHAR(100) NULL,
     PRIMARY KEY(author_id)
 );""",
-'books': """CREATE TABLE books(
+'books': """CREATE TABLE IF NOT EXISTS books(
     book_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     total_pages INT NULL,
@@ -46,7 +46,7 @@ tables={
     PRIMARY KEY(book_id),
     CONSTRAINT fk_publisher FOREIGN KEY(publisher_id) REFERENCES publishers(publisher_id)
 );""",
-'book_authors':"""CREATE TABLE book_authors (
+'book_authors':"""CREATE TABLE IF NOT EXISTS book_authors (
     book_id INT NOT NULL,
     author_id INT NOT NULL,
     PRIMARY KEY(book_id, author_id),
